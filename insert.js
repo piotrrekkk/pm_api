@@ -10,7 +10,6 @@ async function insertToDb (collectionName, value) {
     useUnifiedTopology: true
   });
 
-  console.log('params', collectionName, value);
   try {
 
     await client.connect();

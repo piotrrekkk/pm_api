@@ -33,7 +33,7 @@ app.get('/kobylany', (req, res) => {
 	}
 
 	showdata.showData(COLLECTION_NAME).then(data => {
-		console.log('***data***', data);
+		console.log('***data***', arguments);
 		// res.json(data);
 	})
 
