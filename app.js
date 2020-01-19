@@ -3,8 +3,7 @@ const app = express()
 const port = 8081
 
 app.get('/', (req, res) => {
- res.sendStatus(200);
- console.log('success');
+ res.sendStatus(404); 
 });
 
 app.get('/kobylany', (req, res) => {
