@@ -32,9 +32,7 @@ app.get('/kobylany', (req, res) => {
 		return;
 	}
 
-	res
-	.sendStatus(200)
-	.json(showdata.showData(COLLECTION_NAME));
+	res.json(showdata.showData(COLLECTION_NAME));
 
 
 });
