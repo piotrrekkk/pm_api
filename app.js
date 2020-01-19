@@ -7,23 +7,30 @@ const insert = require('./insert');
 
 const COLLECTION_NAME = 'kobylany'
 app.get('/', (req, res) => {
- res.sendStatus(404); 
+	res.sendStatus(404);
 });
 
 app.get('/kobylany', (req, res) => {
 	console.log(req.query);
-	if(req.query.valuename === 'PM25') {
+	if (req.query.valuename === 'PM25') {
 		console.log('PM 2.5', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
-			'PM25' : req.query.value
+			type: 'PM 2.5',
+			value: req.query.value
 		})
+		res.sendStatus(200);
+		return;
 	}
-	if(req.query.valuename === 'PM10') {
+	if (req.query.valuename === 'PM10') {
 		console.log('PM 10', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
-			'PM10' : req.query.value
+			type: 'PM 10',
+			value: req.query.value
 		})
+		res.sendStatus(200);
+		return;
 	}
-	res.sendStatus(200);
+
+
 });
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
