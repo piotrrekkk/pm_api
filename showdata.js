@@ -14,7 +14,7 @@ async function showData(collectionName) {
         await client.connect();
         const db = client.db(dbName);
 
-        return Promise.all(
+        return Promise.all([
             db.collection(collectionName)
                 .find({ type: 'PM 2.5' })
                 .toArray((err, item) => {
@@ -25,7 +25,7 @@ async function showData(collectionName) {
                 .toArray((err, item) => {
                     return item;
                 })
-
+            ]
         )
     } catch (err) {
         console.log(err.stack);
