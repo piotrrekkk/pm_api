@@ -10,6 +10,7 @@ module.exports = (async function (collectionName, value) {
     useUnifiedTopology: true
   });
 
+  console.log('params', collectionName, value);
   try {
 
     await client.connect();
