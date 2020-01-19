@@ -9,8 +9,12 @@ app.get('/', (req, res) => {
 
 app.get('/kobylany', (req, res) => {
 	console.log(req.query);
-	console.log('PM 2.5', _.findKey(req.query, 'PM25').value);
-	console.log('PM 10', _.findKey(req.query, 'PM10').value);
+	if(req.query.valuename === 'PM25') {
+		console.log('PM 2.5', req.query.value);
+	}
+	if(req.query.valuename === 'PM10') {
+		console.log('PM 10', req.query.value);
+	}
 	res.sendStatus(200);
 });
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
