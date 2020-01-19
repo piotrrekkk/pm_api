@@ -19,14 +19,15 @@ async function showData(collectionName) {
                 .find({ type: 'PM 2.5' })
                 .toArray((err, item) => {
                     return item;
-                }),
+                })
+                .then(data => data),
             db.collection(collectionName)
                 .find({ type: 'PM 10' })
                 .toArray((err, item) => {
                     return item;
                 })
-            ]
-        )
+                .then(data => data)
+        ])
     } catch (err) {
         console.log(err.stack);
     }
