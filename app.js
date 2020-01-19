@@ -16,6 +16,7 @@ app.get('/kobylany', (req, res) => {
 	if (req.query.valuename === 'PM25') {
 		console.log('PM 2.5', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
+			time: new Date().toString(),
 			type: 'PM 2.5',
 			value: req.query.value
 		})
@@ -25,7 +26,7 @@ app.get('/kobylany', (req, res) => {
 	if (req.query.valuename === 'PM10') {
 		console.log('PM 10', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
-			time: new Date(),
+			time: new Date().toString(),
 			type: 'PM 10',
 			value: req.query.value
 		})
