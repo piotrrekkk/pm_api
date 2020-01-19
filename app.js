@@ -32,7 +32,10 @@ app.get('/kobylany', (req, res) => {
 		return;
 	}
 
-	res.json(showdata.showData(COLLECTION_NAME));
+	showdata.showData(COLLECTION_NAME).then(data => {
+		console.log('***data***', data);
+		res.json(data);
+	})
 
 
 });

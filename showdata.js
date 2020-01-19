@@ -11,36 +11,35 @@ async function showData(collectionName) {
     });
 
     try {
-
         await client.connect();
         const db = client.db(dbName);
-
 
         var values = {
             'PM 2.5': [],
             'PM 10': []
         };
-        var readpm25 = await db.collection(collectionName)
-            .find({ type: 'PM 2.5' })
-            .toArray((err, item) => {
-                console.log('toArray2.5', item)
-                if (!err) {
-                    values['PM 2.5'].push(item)
-                }
-            })
+        return new Promise.all(
+            db.collection(collectionName)
+                .find({ type: 'PM 2.5' })
+                .toArray((err, item) => {
+                    console.log('toArray2.5', item)
+                    if (!err) {
+                        values['PM 2.5'].push(item)
+                    }
+                    return item;
+                }),
 
-        var readpm10 = await db.collection(collectionName)
-            .find({ type: 'PM 10' })
-            .toArray((err, item) => {
-                console.log('toArray10', item)
-                if (!err) {
-                    values['PM 10'].push(item)
-                }
-            })
+            db.collection(collectionName)
+                .find({ type: 'PM 10' })
+                .toArray((err, item) => {
+                    console.log('toArray10', item)
+                    if (!err) {
+                        values['PM 10'].push(item)
+                    }
+                    return item;
+                })
 
-        console.log('values', values);
-        return values;
-
+        )
     } catch (err) {
         console.log(err.stack);
     }
