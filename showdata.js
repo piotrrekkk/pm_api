@@ -18,7 +18,7 @@ async function showData(collectionName) {
             'PM 2.5': [],
             'PM 10': []
         };
-        return new Promise.all(
+        return Promise.all(
             db.collection(collectionName)
                 .find({ type: 'PM 2.5' })
                 .toArray((err, item) => {
