@@ -21,4 +21,4 @@ module.exports = (async function (collectionName, value) {
     console.log(err.stack);
   }
   client.close();
-})(collectionName, value);
+})();
