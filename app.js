@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const app = express()
 const port = 8081
 
@@ -8,6 +8,8 @@ app.get('/', (req, res) => {
 
 app.get('/kobylany', (req, res) => {
 	console.log(req.query);
+	console.log('PM 2.5', _.findKey(req.query, 'PM25').value);
+	console.log('PM 10', _.findKey(req.query, 'PM10').value);
 	res.sendStatus(200);
 });
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
