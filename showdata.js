@@ -18,13 +18,13 @@ async function showData(collectionName) {
             db.collection(collectionName)
                 .find({ type: 'PM 2.5' })
                 .toArray((err, item) => {
-                    console.log('pm25', item)
+                    console.log('pm25', item, arguments)
                     return item;
                 }),
             db.collection(collectionName)
                 .find({ type: 'PM 10' })
                 .toArray((err, item) => {
-                    console.log('pm10', item)
+                    console.log('pm10', item, arguments)
                     return item;
                 })
         ])
