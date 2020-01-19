@@ -25,6 +25,7 @@ app.get('/kobylany', (req, res) => {
 	if (req.query.valuename === 'PM10') {
 		console.log('PM 10', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
+			time: new Date(),
 			type: 'PM 10',
 			value: req.query.value
 		})
