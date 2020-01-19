@@ -20,8 +20,7 @@ async function showData(collectionName) {
                 .toArray((err, item) => {
                     console.log('pm25', item)
                     return item;
-                })
-                .then(data => data),
+                }),
             db.collection(collectionName)
                 .find({ type: 'PM 10' })
                 .toArray((err, item) => {
