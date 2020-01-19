@@ -4,7 +4,7 @@ const assert = require('assert');
 const url = 'mongodb://localhost:27017';
 const dbName = 'airQuality';
 
-module.exports = (async function (collectionName, value) {
+async function insertToDb (collectionName, value) {
   const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,4 +22,6 @@ module.exports = (async function (collectionName, value) {
     console.log(err.stack);
   }
   client.close();
-})();
+};
+
+exports.insertToDb = insertToDb;

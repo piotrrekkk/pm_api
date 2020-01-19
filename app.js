@@ -14,13 +14,13 @@ app.get('/kobylany', (req, res) => {
 	console.log(req.query);
 	if(req.query.valuename === 'PM25') {
 		console.log('PM 2.5', req.query.value);
-		insert(COLLECTION_NAME, {
+		insert.insertToDb(COLLECTION_NAME, {
 			'PM2.5' : req.query.value
 		})
 	}
 	if(req.query.valuename === 'PM10') {
 		console.log('PM 10', req.query.value);
-		insert(COLLECTION_NAME, {
+		insert.insertToDb(COLLECTION_NAME, {
 			'PM10' : req.query.value
 		})
 	}
