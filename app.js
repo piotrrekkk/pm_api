@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 app.get('/kobylany', (req, res) => {
 	console.log(req.query);
 	if(req.query.valuename === 'PM25') {
-		console.log('PM 2.5', req.query.value);
+		console.log('PM 25', req.query.value);
 		insert.insertToDb(COLLECTION_NAME, {
 			'PM2.5' : req.query.value
 		})
