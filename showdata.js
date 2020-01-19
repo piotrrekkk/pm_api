@@ -27,7 +27,6 @@ async function showData(collectionName) {
                     values['PM 2.5'].push(item)
                 }
             })
-        return items;
 
         var readpm10 = await db.collection(collectionName)
             .find({ type: 'PM 10' })
