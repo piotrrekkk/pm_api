@@ -4,6 +4,7 @@ const port = 8081
 const _ = require('underscore');
 
 const insert = require('./insert');
+const showdata = require('./showdata');
 
 const COLLECTION_NAME = 'kobylany'
 app.get('/', (req, res) => {
@@ -30,6 +31,10 @@ app.get('/kobylany', (req, res) => {
 		res.sendStatus(200);
 		return;
 	}
+
+	res
+	.sendStatus(200)
+	.json(showdata.showData(COLLECTION_NAME));
 
 
 });
