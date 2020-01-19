@@ -37,8 +37,9 @@ async function showData(collectionName) {
                     values['PM 10'].push(item)
                 }
             })
-        return values;
 
+        console.log('values', values);
+        return values;
 
     } catch (err) {
         console.log(err.stack);
