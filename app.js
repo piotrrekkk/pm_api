@@ -8,16 +8,17 @@ const _ = require('underscore');
 const insert = require('./insert');
 const showdata = require('./showdata');
 
-const COLLECTION_NAME = 'kobylany'
 app.get('/', (req, res) => {
 	res.sendStatus(404);
 });
 
-app.get('/kobylany', (req, res) => {
-	console.log(req.query);
+app.get('/insert', (req, res) => {
+	if (req.query.uuid !== '6yW2MnDaqbGw2Ct4') {
+		return;
+	}
 	if (req.query.valuename === 'PM25') {
-		console.log('PM 2.5', req.query.value);
-		insert.insertToDb(COLLECTION_NAME, {
+		insert.insertToDb(req.query.location, {
+			location: req.query.location,
 			time: new Date().toString(),
 			type: 'PM 2.5',
 			value: req.query.value
@@ -26,8 +27,8 @@ app.get('/kobylany', (req, res) => {
 		return;
 	}
 	if (req.query.valuename === 'PM10') {
-		console.log('PM 10', req.query.value);
-		insert.insertToDb(COLLECTION_NAME, {
+		insert.insertToDb(req.query.location, {
+			location: req.query.location,
 			time: new Date().toString(),
 			type: 'PM 10',
 			value: req.query.value
@@ -35,12 +36,13 @@ app.get('/kobylany', (req, res) => {
 		res.sendStatus(200);
 		return;
 	}
-
-	showdata.showData(COLLECTION_NAME).then(data => {
-		console.log('***data***', data);
+})
+app.get('/data', (req, res) => {
+	showdata.showData(req.query.location).then(data => {
 		res.json(data);
 	})
+})
 
+app.use('/static', express.static('public'));
 
-});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
