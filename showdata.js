@@ -14,31 +14,20 @@ async function showData(collectionName) {
         await client.connect();
         const db = client.db(dbName);
 
-        let valuePM25 = new Promise((resolve, reject) => db.collection(collectionName)
-            .find({ type: 'PM 2.5' })
+        return new Promise((resolve, reject) => db.collection(collectionName)
+            .find({
+                $and: [
+                    { type: 'PM 2.5' },
+                    { type: 'PM 10' }
+                ]
+            })
             .toArray((err, item) => {
-                console.log('pm25', item, arguments)
-                // return item;
                 if (err) {
                     console.log(err);
                     reject(err);
                 }
                 resolve(item);
             }));
-
-        let valuePM10 = new Promise((resolve, reject) => db.collection(collectionName)
-            .find({ type: 'PM 10' })
-            .toArray((err, item) => {
-                console.log('pm10', item, arguments)
-                if (err) {
-                    console.log(err);
-                    reject(err);
-                }
-                resolve(item);
-            }));
-
-        return Promise.all([valuePM10, valuePM25]);
-
     } catch (err) {
         console.log(err.stack);
     }
