@@ -5,6 +5,9 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'airQuality';
 
 async function showData(collectionName) {
+    
+    console.log('location=', collectionName);
+
     const client = new MongoClient(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -16,7 +19,7 @@ async function showData(collectionName) {
 
         return new Promise((resolve, reject) => db.collection(collectionName)
             .find({
-                $and: [
+                $or: [
                     { type: 'PM 2.5' },
                     { type: 'PM 10' }
                 ]
