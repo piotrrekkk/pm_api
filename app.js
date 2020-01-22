@@ -34,9 +34,11 @@ app.get('/insert', (req, res) => {
 });
 
 app.get('/data', (req, res) => {
-	showdata.showData(req.query.location).then(data => {
-		res.json(data);
-	})
+	showdata.showData(req.query.location)
+		.then(data => {
+			res.json(data);
+		})
+		.catch(e => console.log(e));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

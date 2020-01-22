@@ -5,7 +5,7 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'airQuality';
 
 async function showData(collectionName) {
-    
+
     console.log('location=', collectionName);
 
     const client = new MongoClient(url, {
@@ -24,6 +24,8 @@ async function showData(collectionName) {
                     { type: 'PM 10' }
                 ]
             })
+            .sort({ $natural: 1 })
+            .limit(50)
             .toArray((err, item) => {
                 if (err) {
                     console.log(err);
